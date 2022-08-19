@@ -1,4 +1,8 @@
+import 'package:e_commerce_app/features/auth/screens/auth_screen.dart';
 import 'package:flutter/material.dart';
+
+import 'package:e_commerce_app/constants/global_variables.dart';
+import 'package:e_commerce_app/router.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,30 +16,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Amazon clone',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: GlobalVariables.backgroundColor,
+        colorScheme: const ColorScheme.light(
+          primary: GlobalVariables.secondaryColor,
+        ),
+        appBarTheme: const AppBarTheme(elevation: 0),
+        iconTheme: const IconThemeData(color: Colors.black),
       ),
-      home: const MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Amazon clone'),
-      ),
-      body: Container(),
+      onGenerateRoute: (settings) => generateRoute(settings),
+      home: const AuthScreen(),
     );
   }
 }
