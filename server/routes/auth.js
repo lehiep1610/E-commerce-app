@@ -9,6 +9,7 @@ authRouter.post("/api/signup", async (req, res) => {
 
   try {
     const exsitingUser = await User.findOne({ email });
+    console.log(email);
     if (exsitingUser) {
       return res
         .status(400)

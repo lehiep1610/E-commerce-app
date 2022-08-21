@@ -12,8 +12,7 @@ const userSchema = mongoose.Schema({
     trim: true,
     validate: {
       validator: (value) => {
-        const re =
-          /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+        const re = /^[a-z0-9.]{1,64}@[a-z0-9.]{1,64}$/i;
         return value.match(re);
       },
       message: "Email address is not valid",
@@ -22,12 +21,6 @@ const userSchema = mongoose.Schema({
   password: {
     required: true,
     type: String,
-    validate: {
-      validator: (value) => {
-        return value.length > 8;
-      },
-      message: "Password must have 8-16 characters",
-    },
   },
   address: {
     type: String,
