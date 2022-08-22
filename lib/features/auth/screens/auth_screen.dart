@@ -20,8 +20,8 @@ class AuthScreen extends StatefulWidget {
 
 class _AuthScreenState extends State<AuthScreen> {
   Auth _auth = Auth.signup;
-  final _signupFormKey = GlobalKey<FormState>();
-  final _signinFormKey = GlobalKey<FormState>();
+  final _signUpFormKey = GlobalKey<FormState>();
+  final _signInFormKey = GlobalKey<FormState>();
   final AuthService authService = AuthService();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -37,10 +37,19 @@ class _AuthScreenState extends State<AuthScreen> {
 
   void signUpUser() {
     authService.signUpUser(
-        context: context,
-        email: _emailController.text,
-        password: _passwordController.text,
-        name: _nameController.text);
+      context: context,
+      email: _emailController.text,
+      password: _passwordController.text,
+      name: _nameController.text,
+    );
+  }
+
+  void signInUser() {
+    authService.signInUser(
+      context: context,
+      email: _emailController.text,
+      password: _passwordController.text,
+    );
   }
 
   @override
@@ -81,7 +90,7 @@ class _AuthScreenState extends State<AuthScreen> {
                     padding: const EdgeInsets.all(8),
                     color: GlobalVariables.backgroundColor,
                     child: Form(
-                      key: _signupFormKey,
+                      key: _signUpFormKey,
                       child: Column(
                         children: [
                           CustomTextField(
@@ -102,7 +111,7 @@ class _AuthScreenState extends State<AuthScreen> {
                           CustomButton(
                               text: 'Sign Up',
                               onTap: () {
-                                if (_signupFormKey.currentState!.validate()) {
+                                if (_signUpFormKey.currentState!.validate()) {
                                   signUpUser();
                                 }
                               })
@@ -134,7 +143,7 @@ class _AuthScreenState extends State<AuthScreen> {
                     padding: const EdgeInsets.all(8),
                     color: GlobalVariables.backgroundColor,
                     child: Form(
-                      key: _signinFormKey,
+                      key: _signInFormKey,
                       child: Column(
                         children: [
                           CustomTextField(
@@ -147,7 +156,13 @@ class _AuthScreenState extends State<AuthScreen> {
                             hintText: 'Password',
                           ),
                           const SizedBox(height: 10),
-                          CustomButton(text: 'Sign In', onTap: () {})
+                          CustomButton(
+                              text: 'Sign In',
+                              onTap: () {
+                                if (_signInFormKey.currentState!.validate()) {
+                                  signInUser();
+                                }
+                              })
                         ],
                       ),
                     ),

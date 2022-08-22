@@ -31,12 +31,12 @@ class User {
 
   factory User.fromMap(Map<String, dynamic> map) {
     return User(
-      id: map['_id'] as String,
-      name: map['name'] as String,
-      password: map['password'] as String,
-      email: map['email'] as String,
-      userType: map['userType'] as String,
-      token: map['token'] as String,
+      id: map['_id'] ?? '',
+      name: map['name'] ?? '',
+      password: map['password'] ?? '',
+      email: map['email'] ?? '',
+      userType: map['userType'] ?? '',
+      token: map['token'] ?? '',
     );
   }
 
