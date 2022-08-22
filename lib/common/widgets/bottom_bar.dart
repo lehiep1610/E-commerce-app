@@ -3,6 +3,8 @@ import 'package:e_commerce_app/constants/global_variables.dart';
 import 'package:e_commerce_app/features/home/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../../features/account/screens/account_screen.dart';
+
 class BottomBar extends StatefulWidget {
   static const routeName = '/actual-home';
   const BottomBar({Key? key}) : super(key: key);
@@ -18,9 +20,7 @@ class _BottomBarState extends State<BottomBar> {
 
   List<Widget> pages = [
     const HomeScreen(),
-    const Center(
-      child: Text('Account Page'),
-    ),
+    const AcountScreen(),
     const Center(
       child: Text('Cart Page'),
     ),
